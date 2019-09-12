@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 
 app = Flask(__name__)
 
@@ -18,3 +18,10 @@ def get_user(username):
 @app.route('/post/<int:post_id>')
 def get_post_id(post_id):
     return 'Post: %s' % str(post_id)
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        login_user()
+    elif request.method == 'GET':
+        serve_login()
